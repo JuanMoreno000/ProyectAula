@@ -277,68 +277,75 @@ public class Bebidas extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
-            String cantidadTexto = txt_cantidad.getText();
-            String precioTexto = txt_precio.getText();
-            
-            int cantidad = Integer.parseInt(cantidadTexto);
-            double precio = Double.parseDouble(precioTexto);
-            double precioTotal = cantidad * precio;
-            
-            String id = txt_ID.getText().trim();
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea modificar el contenido?", "Confirmar modificacion", JOptionPane.YES_NO_OPTION);
+            if (resp == JOptionPane.YES_OPTION) {
+                   
+            try {
+                String cantidadTexto = txt_cantidad.getText();
+                String precioTexto = txt_precio.getText();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update bebidas set PRODUCTO = ?, CANTIDAD = ?, PRECIOxUNIDAD = ?, PRECIOTOTAL = ? where ID = " + id);
+                int cantidad = Integer.parseInt(cantidadTexto);
+                double precio = Double.parseDouble(precioTexto);
+                double precioTotal = cantidad * precio;
 
-            pst.setString(1, txt_articulo.getText().trim());
-            pst.setString(2, txt_cantidad.getText().trim());
-            pst.setString(3, txt_precio.getText().trim());
-            pst.setString(4, precioTotal + "");
-            pst.executeUpdate();
+                String id = txt_ID.getText().trim();
 
-            respuesta.setText("MODIFICACION EXITOSA");
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                PreparedStatement pst = cn.prepareStatement("update bebidas set PRODUCTO = ?, CANTIDAD = ?, PRECIOxUNIDAD = ?, PRECIOTOTAL = ? where ID = " + id);
 
-            Timer timer = new Timer(2000, new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    respuesta.setText("");
-                }
-            });
-            timer.setRepeats(false);
-            timer.start();
+                pst.setString(1, txt_articulo.getText().trim());
+                pst.setString(2, txt_cantidad.getText().trim());
+                pst.setString(3, txt_precio.getText().trim());
+                pst.setString(4, precioTotal + "");
+                pst.executeUpdate();
 
-        } catch (Exception e) {
+                respuesta.setText("MODIFICACION EXITOSA");
 
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+
+            } catch (Exception e) {
+
+            }
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el contenido?", "Confirmar eliminacion", JOptionPane.YES_NO_OPTION);
+            if (resp == JOptionPane.YES_OPTION) {
+                   
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                PreparedStatement pst = cn.prepareStatement("delete from bebidas where ID = ?");
 
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from bebidas where ID = ?");
+                pst.setString(1, txt_ID.getText().trim());
+                pst.executeUpdate();
 
-            pst.setString(1, txt_ID.getText().trim());
-            pst.executeUpdate();
+                txt_articulo.setText("");
+                txt_cantidad.setText("");
+                txt_precio.setText("");
+                txt_ID.setText("");
 
-            txt_articulo.setText("");
-            txt_cantidad.setText("");
-            txt_precio.setText("");
-            txt_ID.setText("");
+                respuesta.setText("ELIMINACION CONFIRMADA");
 
-            respuesta.setText("ELIMINACION CONFIRMADA");
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
 
-            Timer timer = new Timer(2000, new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    respuesta.setText("");
-                }
-            });
-            timer.setRepeats(false);
-            timer.start();
+            } catch (Exception e) {
 
-        } catch (Exception e) {
-
+            }
         }
-
+                
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
