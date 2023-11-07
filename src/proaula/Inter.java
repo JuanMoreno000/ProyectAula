@@ -38,7 +38,6 @@ public class Inter extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
@@ -61,7 +60,7 @@ public class Inter extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 89, 51));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 100, 51));
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 10)); // NOI18N
         jButton1.setText("INFO+");
@@ -79,7 +78,7 @@ public class Inter extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 90, 51));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 90, 51));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jButton7.setText("ALIMENTOS");
@@ -88,11 +87,7 @@ public class Inter extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 90, 51));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
-        jLabel2.setText("<html>presione el producto deseado:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 310, 40));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 90, 51));
 
         jLabel3.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jLabel3.setText("<html>Bienvenido a InventariXpert, aqui podras inventariar tus productos.");
@@ -120,7 +115,7 @@ public class Inter extends javax.swing.JFrame {
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                 .addContainerGap())
         );
         contentLayout.setVerticalGroup(
@@ -138,8 +133,7 @@ public class Inter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +153,7 @@ public class Inter extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Bebidas drink = new Bebidas();
-        drink.setSize(650, 450);
+        drink.setSize(650, 460);
         drink.setLocation(0, 0);
         
         content.removeAll();
@@ -170,7 +164,7 @@ public class Inter extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         MediosDeAseo MDA = new MediosDeAseo();
-        MDA.setSize(650, 450);
+        MDA.setSize(650, 460);
         MDA.setLocation(0, 0);
         
         content.removeAll();
@@ -181,7 +175,7 @@ public class Inter extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Alimentos alim = new Alimentos();
-        alim.setSize(650, 450);
+        alim.setSize(650, 460);
         alim.setLocation(0, 0);
         
         content.removeAll();
@@ -237,7 +231,6 @@ public class Inter extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

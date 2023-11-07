@@ -81,16 +81,30 @@ public class Alimentos extends javax.swing.JPanel {
             }
         });
 
-        tablaAlimentos.setBorder(javax.swing.BorderFactory.createTitledBorder("ALIMENTOS"));
         tablaAlimentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "ID", "PRODUCTO", "CANTIDAD", "PRECIO", "PRECIO TOTAL"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaAlimentos);
+        if (tablaAlimentos.getColumnModel().getColumnCount() > 0) {
+            tablaAlimentos.getColumnModel().getColumn(0).setResizable(false);
+            tablaAlimentos.getColumnModel().getColumn(1).setResizable(false);
+            tablaAlimentos.getColumnModel().getColumn(2).setResizable(false);
+            tablaAlimentos.getColumnModel().getColumn(3).setResizable(false);
+            tablaAlimentos.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jButton4.setText("ELIMINAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +114,13 @@ public class Alimentos extends javax.swing.JPanel {
         });
 
         jButton3.setText("ACTUALIZAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        respuesta.setForeground(new java.awt.Color(0, 255, 0));
 
         jButton7.setText("IMPRIMIR");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +180,7 @@ public class Alimentos extends javax.swing.JPanel {
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -171,18 +192,20 @@ public class Alimentos extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(txt_articulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(txt_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
@@ -191,7 +214,7 @@ public class Alimentos extends javax.swing.JPanel {
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
@@ -373,7 +396,16 @@ public class Alimentos extends javax.swing.JPanel {
                 
             }
             documento.close();
-            JOptionPane.showMessageDialog(null, "Reporte de alimentos creados", "REPORTE EXITOSO", JOptionPane.INFORMATION_MESSAGE);
+            
+            respuesta.setText("REPORTE GENERADO");
+
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
             
         } catch (DocumentException | HeadlessException | FileNotFoundException e) {
         
@@ -392,6 +424,45 @@ public class Alimentos extends javax.swing.JPanel {
     private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_cantidadActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tablaAlimentos.getModel();
+        model.setRowCount(0);
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from alimentos");
+
+            while (rs.next()) {
+
+                String ID = rs.getString("ID");
+                String articulo = rs.getString("PRODUCTO");
+                String cantidad = rs.getString("CANTIDAD");
+                String precio = rs.getString("PRECIOxUNIDAD");
+                String precioTotal = rs.getString("PRECIOTOTAL");
+
+                model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+            respuesta.setText("TABLA ACTUALIZADA");
+
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
