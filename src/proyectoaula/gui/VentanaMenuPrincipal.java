@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proaula;
+package proyectoaula.gui;
 
 import javax.swing.JOptionPane;
 import java.sql.*;
@@ -12,12 +12,12 @@ import java.sql.*;
  *
  * @author hp
  */
-public class Inter extends javax.swing.JFrame {
+public class VentanaMenuPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form Inter
      */
-    public Inter() {
+    public VentanaMenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
     
@@ -63,13 +63,13 @@ public class Inter extends javax.swing.JFrame {
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 100, 51));
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 10)); // NOI18N
-        jButton1.setText("INFO+");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/informacion (1).png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 20));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jButton6.setText("BEBIDAS");
@@ -157,7 +157,7 @@ public class Inter extends javax.swing.JFrame {
         drink.setLocation(0, 0);
         
         content.removeAll();
-        content.add(drink, Inter.CENTER_ALIGNMENT);
+        content.add(drink, VentanaMenuPrincipal.CENTER_ALIGNMENT);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -168,7 +168,7 @@ public class Inter extends javax.swing.JFrame {
         MDA.setLocation(0, 0);
         
         content.removeAll();
-        content.add(MDA, Inter.CENTER_ALIGNMENT);
+        content.add(MDA, VentanaMenuPrincipal.CENTER_ALIGNMENT);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -179,7 +179,7 @@ public class Inter extends javax.swing.JFrame {
         alim.setLocation(0, 0);
         
         content.removeAll();
-        content.add(alim, Inter.CENTER_ALIGNMENT);
+        content.add(alim, VentanaMenuPrincipal.CENTER_ALIGNMENT);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -205,20 +205,21 @@ public class Inter extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inter().setVisible(true);
+                new VentanaMenuPrincipal().setVisible(true);
             }
         });
     }

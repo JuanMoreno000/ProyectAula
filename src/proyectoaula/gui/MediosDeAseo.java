@@ -3,23 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proaula;
+package proyectoaula.gui;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -28,12 +32,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hp
  */
-public class Bebidas extends javax.swing.JPanel {
+public class MediosDeAseo extends javax.swing.JPanel {
 
     /**
-     * Creates new form Bebidas
+     * Creates new form MediosDeAseo
      */
-    public Bebidas() {
+    public MediosDeAseo() {
         initComponents();
     }
 
@@ -46,75 +50,23 @@ public class Bebidas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaBebidas = new javax.swing.JTable();
-        respuesta = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        txt_articulo = new javax.swing.JTextField();
-        txt_cantidad = new javax.swing.JTextField();
-        txt_precio = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         txt_ID = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaAseo = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        respuesta = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        txt_articulo = new javax.swing.JTextField();
+        txt_cantidad = new javax.swing.JTextField();
+        txt_precio = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SECCION DE BEBIDAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        tablaBebidas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "PRODUCTO", "CANTIDAD", "PRECIO", "PRECIO TOTAL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tablaBebidas);
-        if (tablaBebidas.getColumnModel().getColumnCount() > 0) {
-            tablaBebidas.getColumnModel().getColumn(0).setResizable(false);
-            tablaBebidas.getColumnModel().getColumn(1).setResizable(false);
-            tablaBebidas.getColumnModel().getColumn(2).setResizable(false);
-            tablaBebidas.getColumnModel().getColumn(3).setResizable(false);
-            tablaBebidas.getColumnModel().getColumn(4).setResizable(false);
-        }
-
-        respuesta.setBackground(new java.awt.Color(51, 255, 51));
-        respuesta.setForeground(new java.awt.Color(0, 255, 0));
-
-        jButton1.setFont(new java.awt.Font("Monotype Corsiva", 0, 12)); // NOI18N
-        jButton1.setText("i");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        txt_articulo.setBorder(javax.swing.BorderFactory.createTitledBorder("ARTICULO:"));
-        txt_articulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_articuloActionPerformed(evt);
-            }
-        });
-
-        txt_cantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("CANTIDAD:"));
-        txt_cantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_cantidadActionPerformed(evt);
-            }
-        });
-
-        txt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder("PRECIO:"));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SECCION DE MEDIOS DE ASEO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jButton2.setText("GUARDAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +91,31 @@ public class Bebidas extends javax.swing.JPanel {
             }
         });
 
+        tablaAseo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "PRODUCTO", "CANTIDAD", "PRECIO", "PRECIO TOTAL"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaAseo);
+        if (tablaAseo.getColumnModel().getColumnCount() > 0) {
+            tablaAseo.getColumnModel().getColumn(0).setResizable(false);
+            tablaAseo.getColumnModel().getColumn(1).setResizable(false);
+            tablaAseo.getColumnModel().getColumn(2).setResizable(false);
+            tablaAseo.getColumnModel().getColumn(3).setResizable(false);
+            tablaAseo.getColumnModel().getColumn(4).setResizable(false);
+        }
+
         jButton4.setText("ELIMINAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,12 +130,38 @@ public class Bebidas extends javax.swing.JPanel {
             }
         });
 
+        respuesta.setForeground(new java.awt.Color(0, 255, 0));
+
         jButton7.setText("IMPRIMIR");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
+
+        jButton1.setFont(new java.awt.Font("Monotype Corsiva", 0, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/informacion (1).png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txt_articulo.setBorder(javax.swing.BorderFactory.createTitledBorder("ARTICULO:"));
+        txt_articulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_articuloActionPerformed(evt);
+            }
+        });
+
+        txt_cantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("CANTIDAD:"));
+        txt_cantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cantidadActionPerformed(evt);
+            }
+        });
+
+        txt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder("PRECIO:"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -229,15 +232,6 @@ public class Bebidas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "En esta seccion podra ingresar, o eliminar los"
-            + "productos de la seccion de bebidas.", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_cantidadActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (txt_articulo.getText().trim().isEmpty() || 
                 txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
@@ -256,7 +250,7 @@ public class Bebidas extends javax.swing.JPanel {
 
             double precioTotal = cantidad * precio;
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-            PreparedStatement pst = cn.prepareStatement("insert into bebidas values(?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("insert into medios_aseo values(?,?,?,?,?)");
 
             pst.setString(1, "0000");
             pst.setString(2, txt_articulo.getText().trim());
@@ -279,28 +273,28 @@ public class Bebidas extends javax.swing.JPanel {
             timer.setRepeats(false);
             timer.start();
 
-            DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
-                model.setRowCount(0);
+            DefaultTableModel model = (DefaultTableModel) tablaAseo.getModel();
+            model.setRowCount(0);
 
-
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery("select * from bebidas");
+        
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from medios_aseo");
 
                     while (rs.next()) {
 
-                        String ID = rs.getString("ID");
+                        String id = rs.getString("ID");
                         String articulo = rs.getString("PRODUCTO");
-                        String Cantidad = rs.getString("CANTIDAD");
-                        String Precio = rs.getString("PRECIOxUNIDAD");
-                        String PrecioTotal = rs.getString("PRECIOTOTAL");
+                        String cantidadBd = rs.getString("CANTIDAD");
+                        String precioBd = rs.getString("PRECIOxUNIDAD");
+                        String precioTotalBd = rs.getString("PRECIOTOTAL");
 
-                        model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+                        model.addRow(new Object[]{id, articulo, cantidadBd, precioBd, precioTotalBd});
                     }
 
-                    rs.close();
-                    stmt.close();
+                rs.close();
+                stmt.close();
                 conn.close();
 
             } catch (Exception e) {
@@ -310,26 +304,20 @@ public class Bebidas extends javax.swing.JPanel {
         } catch (Exception e) {
 
         }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txt_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_articuloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_articuloActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (txt_articulo.getText().trim().isEmpty() || 
-                txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
+        if (txt_ID.getText().trim().isEmpty()) {
             
             JOptionPane.showMessageDialog(null, "   NO HA INTRODUCIDO EL ID\n"
                     + "POR FAVOR INTRODUZCA UN ID", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         
         }
-
+        
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from bebidas where ID = ?");
+            PreparedStatement pst = cn.prepareStatement("select * from medios_aseo where ID = ?");
 
             pst.setString(1, txt_ID.getText().trim());
 
@@ -360,9 +348,10 @@ public class Bebidas extends javax.swing.JPanel {
             return;
         
         }
+        
 
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea modificar el contenido?", "Confirmar modificacion", JOptionPane.YES_NO_OPTION);
-            if (resp == JOptionPane.YES_OPTION) {
+        if (resp == JOptionPane.YES_OPTION) {
                    
             try {
                 String cantidadTexto = txt_cantidad.getText();
@@ -375,7 +364,7 @@ public class Bebidas extends javax.swing.JPanel {
                 String id = txt_ID.getText().trim();
 
                 Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                PreparedStatement pst = cn.prepareStatement("update bebidas set PRODUCTO = ?, CANTIDAD = ?, PRECIOxUNIDAD = ?, PRECIOTOTAL = ? where ID = " + id);
+                PreparedStatement pst = cn.prepareStatement("update medios_aseo set PRODUCTO = ?, CANTIDAD = ?, PRECIOxUNIDAD = ?, PRECIOTOTAL = ? where ID = " + id);
 
                 pst.setString(1, txt_articulo.getText().trim());
                 pst.setString(2, txt_cantidad.getText().trim());
@@ -393,24 +382,23 @@ public class Bebidas extends javax.swing.JPanel {
                 timer.setRepeats(false);
                 timer.start();
                 
-                DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
+                DefaultTableModel model = (DefaultTableModel) tablaAseo.getModel();
                 model.setRowCount(0);
-
 
                 try {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
                     Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery("select * from bebidas");
+                    ResultSet rs = stmt.executeQuery("select * from medios_aseo");
 
                     while (rs.next()) {
 
-                        String ID = rs.getString("ID");
+                        String idBd = rs.getString("ID");
                         String articulo = rs.getString("PRODUCTO");
-                        String Cantidad = rs.getString("CANTIDAD");
-                        String Precio = rs.getString("PRECIOxUNIDAD");
-                        String PrecioTotal = rs.getString("PRECIOTOTAL");
+                        String cantidadBd = rs.getString("CANTIDAD");
+                        String precioBd = rs.getString("PRECIOxUNIDAD");
+                        String precioTotalBd = rs.getString("PRECIOTOTAL");
 
-                        model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+                        model.addRow(new Object[]{idBd, articulo, cantidadBd, precioBd, precioTotalBd});
                     }
 
                     rs.close();
@@ -425,10 +413,12 @@ public class Bebidas extends javax.swing.JPanel {
 
             }
         }
+            
+            
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (txt_articulo.getText().trim().isEmpty() ||
+        if (txt_articulo.getText().trim().isEmpty() || 
                 txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
             
             JOptionPane.showMessageDialog(null, "POR SELECCIONE ALGUN ITEM", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -437,63 +427,62 @@ public class Bebidas extends javax.swing.JPanel {
         }
         
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el contenido?", "Confirmar eliminacion", JOptionPane.YES_NO_OPTION);
-            if (resp == JOptionPane.YES_OPTION) {
+        if (resp == JOptionPane.YES_OPTION) {
                    
             try {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                PreparedStatement pst = cn.prepareStatement("delete from bebidas where ID = ?");
+               Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+               PreparedStatement pst = cn.prepareStatement("delete from medios_aseo where ID = ?");
 
-                pst.setString(1, txt_ID.getText().trim());
-                pst.executeUpdate();
+               pst.setString(1, txt_ID.getText().trim());
+               pst.executeUpdate();
 
-                txt_articulo.setText("");
-                txt_cantidad.setText("");
-                txt_precio.setText("");
-                txt_ID.setText("");
+               txt_articulo.setText("");
+               txt_cantidad.setText("");
+               txt_precio.setText("");
+               txt_ID.setText("");
 
-                respuesta.setText("ELIMINACION CONFIRMADA");
+               respuesta.setText("ELIMINACION CONFIRMADA");
 
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        respuesta.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-                
-                DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
+               Timer timer = new Timer(2000, new ActionListener() {
+                   public void actionPerformed(ActionEvent e) {
+                       respuesta.setText("");
+                   }
+               });
+               timer.setRepeats(false);
+               timer.start();
+               
+                DefaultTableModel model = (DefaultTableModel) tablaAseo.getModel();
                 model.setRowCount(0);
 
 
                 try {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
                     Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery("select * from bebidas");
+                    ResultSet rs = stmt.executeQuery("select * from medios_aseo");
 
                     while (rs.next()) {
 
-                        String ID = rs.getString("ID");
+                        String id = rs.getString("ID");
                         String articulo = rs.getString("PRODUCTO");
-                        String cantidad = rs.getString("CANTIDAD");
-                        String precio = rs.getString("PRECIOxUNIDAD");
-                        String precioTotal = rs.getString("PRECIOTOTAL");
+                        String cantidadBd = rs.getString("CANTIDAD");
+                        String precioBd = rs.getString("PRECIOxUNIDAD");
+                        String precioTotalBd = rs.getString("PRECIOTOTAL");
 
-                        model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+                        model.addRow(new Object[]{id, articulo, cantidadBd, precioBd, precioTotalBd});
                     }
 
                     rs.close();
                     stmt.close();
-                    conn.close();
+                    conn.close();            
 
                 } catch (Exception e) {
 
                 }
 
-            } catch (Exception e) {
+           } catch (Exception e) {
 
-            }
+           }
         }
-                
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -501,7 +490,7 @@ public class Bebidas extends javax.swing.JPanel {
         
         try {
             String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte Inventario De Bebidas.pdf"));
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte Inventario De Medios De Aseo.pdf"));
             documento.open();
             
             PdfPTable tabla = new PdfPTable(5);
@@ -513,7 +502,7 @@ public class Bebidas extends javax.swing.JPanel {
             
             try {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                PreparedStatement pst = cn.prepareStatement("select * from bebidas");
+                PreparedStatement pst = cn.prepareStatement("select * from medios_aseo");
                 
                 ResultSet rs = pst.executeQuery();
                 
@@ -551,15 +540,27 @@ public class Bebidas extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane.showMessageDialog(null, "En esta seccion podra ingresar, o eliminar los"
+            + "productos de la seccion de medios de aseo.", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_articuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_articuloActionPerformed
+
+    private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cantidadActionPerformed
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
+        DefaultTableModel model = (DefaultTableModel) tablaAseo.getModel();
         model.setRowCount(0);
 
-        
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from bebidas");
+            ResultSet rs = stmt.executeQuery("select * from medios_aseo");
 
             while (rs.next()) {
 
@@ -575,17 +576,17 @@ public class Bebidas extends javax.swing.JPanel {
             rs.close();
             stmt.close();
             conn.close();
-            
+
             respuesta.setText("TABLA ACTUALIZADA");
 
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        respuesta.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-            
+            Timer timer = new Timer(2000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    respuesta.setText("");
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+
         } catch (Exception e) {
 
         }
@@ -602,7 +603,7 @@ public class Bebidas extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel respuesta;
-    private javax.swing.JTable tablaBebidas;
+    private javax.swing.JTable tablaAseo;
     private javax.swing.JTextField txt_ID;
     private javax.swing.JTextField txt_articulo;
     private javax.swing.JTextField txt_cantidad;

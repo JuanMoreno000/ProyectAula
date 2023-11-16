@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proaula;
+package proyectoaula.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,12 +40,8 @@ public class Alimentos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        txt_ID = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAlimentos = new javax.swing.JTable();
+        tablaBebidas = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         respuesta = new javax.swing.JLabel();
@@ -54,9 +50,79 @@ public class Alimentos extends javax.swing.JPanel {
         txt_articulo = new javax.swing.JTextField();
         txt_cantidad = new javax.swing.JTextField();
         txt_precio = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        txt_ID = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SECCION DE ALIMENTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+
+        tablaBebidas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "PRODUCTO", "CANTIDAD", "PRECIO", "PRECIO TOTAL"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaBebidas);
+
+        jButton4.setText("ELIMINAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("ACTUALIZAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        respuesta.setBackground(new java.awt.Color(51, 255, 51));
+        respuesta.setForeground(new java.awt.Color(0, 255, 0));
+
+        jButton7.setText("IMPRIMIR");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Monotype Corsiva", 0, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/informacion (1).png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txt_articulo.setBorder(javax.swing.BorderFactory.createTitledBorder("ARTICULO:"));
+        txt_articulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_articuloActionPerformed(evt);
+            }
+        });
+
+        txt_cantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("CANTIDAD:"));
+        txt_cantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cantidadActionPerformed(evt);
+            }
+        });
+
+        txt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder("PRECIO:"));
 
         jButton2.setText("GUARDAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,78 +146,6 @@ public class Alimentos extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-
-        tablaAlimentos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "PRODUCTO", "CANTIDAD", "PRECIO", "PRECIO TOTAL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tablaAlimentos);
-        if (tablaAlimentos.getColumnModel().getColumnCount() > 0) {
-            tablaAlimentos.getColumnModel().getColumn(0).setResizable(false);
-            tablaAlimentos.getColumnModel().getColumn(1).setResizable(false);
-            tablaAlimentos.getColumnModel().getColumn(2).setResizable(false);
-            tablaAlimentos.getColumnModel().getColumn(3).setResizable(false);
-            tablaAlimentos.getColumnModel().getColumn(4).setResizable(false);
-        }
-
-        jButton4.setText("ELIMINAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("ACTUALIZAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        respuesta.setForeground(new java.awt.Color(0, 255, 0));
-
-        jButton7.setText("IMPRIMIR");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setFont(new java.awt.Font("Monotype Corsiva", 0, 12)); // NOI18N
-        jButton1.setText("i");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        txt_articulo.setBorder(javax.swing.BorderFactory.createTitledBorder("ARTICULO:"));
-        txt_articulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_articuloActionPerformed(evt);
-            }
-        });
-
-        txt_cantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("CANTIDAD:"));
-        txt_cantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_cantidadActionPerformed(evt);
-            }
-        });
-
-        txt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder("PRECIO:"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,7 +208,7 @@ public class Alimentos extends javax.swing.JPanel {
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
@@ -222,15 +216,190 @@ public class Alimentos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (txt_articulo.getText().trim().isEmpty() ||
+            txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "POR SELECCIONE ALGUN ITEM", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el contenido?", "Confirmar eliminacion", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                PreparedStatement pst = cn.prepareStatement("delete from alimentos where ID = ?");
+
+                pst.setString(1, txt_ID.getText().trim());
+                pst.executeUpdate();
+
+                txt_articulo.setText("");
+                txt_cantidad.setText("");
+                txt_precio.setText("");
+                txt_ID.setText("");
+
+                respuesta.setText("ELIMINACION CONFIRMADA");
+
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+
+                DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
+                model.setRowCount(0);
+
+                try {
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery("select * from alimentos");
+
+                    while (rs.next()) {
+
+                        String id = rs.getString("ID");
+                        String articulo = rs.getString("PRODUCTO");
+                        String cantidadBd = rs.getString("CANTIDAD");
+                        String precioBd = rs.getString("PRECIOxUNIDAD");
+                        String precioTotalBd = rs.getString("PRECIOTOTAL");
+
+                        model.addRow(new Object[]{id, articulo, cantidadBd, precioBd, precioTotalBd});
+                    }
+
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+
+                } catch (Exception e) {
+
+                }
+
+            } catch (Exception e) {
+
+            }
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
+        model.setRowCount(0);
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from alimentos");
+
+            while (rs.next()) {
+
+                String ID = rs.getString("ID");
+                String articulo = rs.getString("PRODUCTO");
+                String cantidad = rs.getString("CANTIDAD");
+                String precio = rs.getString("PRECIOxUNIDAD");
+                String precioTotal = rs.getString("PRECIOTOTAL");
+
+                model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+            respuesta.setText("TABLA ACTUALIZADA");
+
+            Timer timer = new Timer(2000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    respuesta.setText("");
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Document documento = new Document();
+
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte Inventario De Alimentos.pdf"));
+            documento.open();
+
+            PdfPTable tabla = new PdfPTable(5);
+            tabla.addCell("ID");
+            tabla.addCell("PRODUCTO");
+            tabla.addCell("CANTIDAD");
+            tabla.addCell("PRECIO POR UNIDAD");
+            tabla.addCell("PRECIO TOTAL");
+
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                PreparedStatement pst = cn.prepareStatement("select * from alimentos");
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+
+                    do {
+                        tabla.addCell(rs.getString(1));
+                        tabla.addCell(rs.getString(2));
+                        tabla.addCell(rs.getString(3));
+                        tabla.addCell(rs.getString(4));
+                        tabla.addCell(rs.getString(5));
+
+                    } while (rs.next());
+                    documento.add(tabla);
+
+                }
+
+            } catch (DocumentException | SQLException e) {
+
+            }
+            documento.close();
+
+            respuesta.setText("REPORTE GENERADO");
+
+            Timer timer = new Timer(2000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    respuesta.setText("");
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+
+        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
+
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane.showMessageDialog(null, "En esta seccion podra ingresar, o eliminar los"
+            + "productos de la seccion de alimentos.", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_articuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_articuloActionPerformed
+
+    private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cantidadActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (txt_articulo.getText().trim().isEmpty() || 
-                txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
-            
+        if (txt_articulo.getText().trim().isEmpty() ||
+            txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "POR FAVOR LLENE TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
-        
+
         }
-        
+
         try {
             String cantidadTexto = txt_cantidad.getText();
             String precioTexto = txt_precio.getText();
@@ -262,33 +431,33 @@ public class Alimentos extends javax.swing.JPanel {
             });
             timer.setRepeats(false);
             timer.start();
-            
-            DefaultTableModel model = (DefaultTableModel) tablaAlimentos.getModel();
+
+            DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
             model.setRowCount(0);
 
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery("select * from alimentos");
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from alimentos");
 
-                    while (rs.next()) {
+                while (rs.next()) {
 
-                        String ID = rs.getString("ID");
-                        String articulo = rs.getString("PRODUCTO");
-                        String Cantidad = rs.getString("CANTIDAD");
-                        String Precio = rs.getString("PRECIOxUNIDAD");
-                        String PrecioTotal = rs.getString("PRECIOTOTAL");
+                    String id = rs.getString("ID");
+                    String articulo = rs.getString("PRODUCTO");
+                    String cantidadBd = rs.getString("CANTIDAD");
+                    String precioBd = rs.getString("PRECIOxUNIDAD");
+                    String precioTotalBd = rs.getString("PRECIOTOTAL");
 
-                        model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
-                    }
-
-                    rs.close();
-                    stmt.close();
-                    conn.close();
-
-                } catch (Exception e) {
-
+                    model.addRow(new Object[]{id, articulo, cantidadBd, precioBd, precioTotalBd});
                 }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+
+            } catch (Exception e) {
+
+            }
 
         } catch (Exception e) {
 
@@ -296,13 +465,12 @@ public class Alimentos extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (txt_articulo.getText().trim().isEmpty() || 
-                txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
-            
+        if (txt_ID.getText().trim().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "   NO HA INTRODUCIDO EL ID\n"
-                    + "POR FAVOR INTRODUZCA UN ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+                + "POR FAVOR INTRODUZCA UN ID", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
-        
+
         }
 
         try {
@@ -330,19 +498,18 @@ public class Alimentos extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if (txt_articulo.getText().trim().isEmpty() || 
-                txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
-            
+        if (txt_articulo.getText().trim().isEmpty() ||
+            txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "NO HA SELECCIONADO NINGUN ITEM PARA MODIFICAR\n"
-                    + "      POR FAVOR SELECCIONE EL ITEM A MODIFICAR", "ERROR", JOptionPane.ERROR_MESSAGE);
+                + "      POR FAVOR SELECCIONE EL ITEM A MODIFICAR", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
-        
+
         }
 
-        
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea modificar el contenido?", "Confirmar modificacion", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-                   
+
             try {
                 String cantidadTexto = txt_cantidad.getText();
                 String precioTexto = txt_precio.getText();
@@ -371,8 +538,8 @@ public class Alimentos extends javax.swing.JPanel {
                 });
                 timer.setRepeats(false);
                 timer.start();
-                
-                DefaultTableModel model = (DefaultTableModel) tablaAlimentos.getModel();
+
+                DefaultTableModel model = (DefaultTableModel) tablaBebidas.getModel();
                 model.setRowCount(0);
 
                 try {
@@ -382,13 +549,13 @@ public class Alimentos extends javax.swing.JPanel {
 
                     while (rs.next()) {
 
-                        String ID = rs.getString("ID");
+                        String idBd = rs.getString("ID");
                         String articulo = rs.getString("PRODUCTO");
-                        String Cantidad = rs.getString("CANTIDAD");
-                        String Precio = rs.getString("PRECIOxUNIDAD");
-                        String PrecioTotal = rs.getString("PRECIOTOTAL");
+                        String cantidadBd = rs.getString("CANTIDAD");
+                        String precioBd = rs.getString("PRECIOxUNIDAD");
+                        String precioTotalBd = rs.getString("PRECIOTOTAL");
 
-                        model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+                        model.addRow(new Object[]{idBd, articulo, cantidadBd, precioBd, precioTotalBd});
                     }
 
                     rs.close();
@@ -405,180 +572,6 @@ public class Alimentos extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (txt_articulo.getText().trim().isEmpty() ||
-                txt_cantidad.getText().trim().isEmpty() || txt_precio.getText().trim().isEmpty()) {
-            
-            JOptionPane.showMessageDialog(null, "POR FAVOR SELECCIONE ALGUN ITEM", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        
-        }
-        
-        int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el contenido?", "Confirmar eliminacion", JOptionPane.YES_NO_OPTION);
-        if (resp == JOptionPane.YES_OPTION) {
-          
-            try {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                PreparedStatement pst = cn.prepareStatement("delete from alimentos where ID = ?");
-
-                pst.setString(1, txt_ID.getText().trim());
-                pst.executeUpdate();
-
-                txt_articulo.setText("");
-                txt_cantidad.setText("");
-                txt_precio.setText("");
-                txt_ID.setText("");
-
-                respuesta.setText("ELIMINACION CONFIRMADA");
-
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        respuesta.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-                
-                DefaultTableModel model = (DefaultTableModel) tablaAlimentos.getModel();
-                model.setRowCount(0);
-
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery("select * from alimentos");
-
-                    while (rs.next()) {
-
-                        String ID = rs.getString("ID");
-                        String articulo = rs.getString("PRODUCTO");
-                        String cantidad = rs.getString("CANTIDAD");
-                        String precio = rs.getString("PRECIOxUNIDAD");
-                        String precioTotal = rs.getString("PRECIOTOTAL");
-
-                        model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
-                    }
-
-                    rs.close();
-                    stmt.close();
-                    conn.close();
-
-                } catch (Exception e) {
-
-                }
-
-            } catch (Exception e) {
-
-            }
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Document documento = new Document();
-        
-        try {
-            String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte Inventario De Alimentos.pdf"));
-            documento.open();
-            
-            PdfPTable tabla = new PdfPTable(5);
-            tabla.addCell("ID");
-            tabla.addCell("PRODUCTO");
-            tabla.addCell("CANTIDAD");
-            tabla.addCell("PRECIO POR UNIDAD");
-            tabla.addCell("PRECIO TOTAL");
-            
-            try {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-                PreparedStatement pst = cn.prepareStatement("select * from alimentos");
-                
-                ResultSet rs = pst.executeQuery();
-                
-                if (rs.next()) {
-                    
-                    do {                        
-                        tabla.addCell(rs.getString(1));
-                        tabla.addCell(rs.getString(2));
-                        tabla.addCell(rs.getString(3));
-                        tabla.addCell(rs.getString(4));
-                        tabla.addCell(rs.getString(5));
-                    
-                    } while (rs.next());
-                        documento.add(tabla);
-                                
-                }
-                
-            } catch (DocumentException | SQLException e) {
-                
-            }
-            documento.close();
-            
-            respuesta.setText("REPORTE GENERADO");
-
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        respuesta.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-            
-        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
-        
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "En esta seccion podra ingresar, o eliminar los"
-            + "productos de la seccion de alimentos.", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txt_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_articuloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_articuloActionPerformed
-
-    private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_cantidadActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaAlimentos.getModel();
-        model.setRowCount(0);
-
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from alimentos");
-
-            while (rs.next()) {
-
-                String ID = rs.getString("ID");
-                String articulo = rs.getString("PRODUCTO");
-                String cantidad = rs.getString("CANTIDAD");
-                String precio = rs.getString("PRECIOxUNIDAD");
-                String precioTotal = rs.getString("PRECIOTOTAL");
-
-                model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
-            }
-
-            rs.close();
-            stmt.close();
-            conn.close();
-            
-            respuesta.setText("TABLA ACTUALIZADA");
-
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        respuesta.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -590,7 +583,7 @@ public class Alimentos extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel respuesta;
-    private javax.swing.JTable tablaAlimentos;
+    private javax.swing.JTable tablaBebidas;
     private javax.swing.JTextField txt_ID;
     private javax.swing.JTextField txt_articulo;
     private javax.swing.JTextField txt_cantidad;
