@@ -7,6 +7,7 @@ package proaula;
 
 import javax.swing.JOptionPane;
 import java.sql.*;
+import proyectoaula.VentanaBebidas;
 
 /**
  *
@@ -38,8 +39,6 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -56,6 +55,7 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jButton4.setText("<html>MEDIOS DE ASEO");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -64,7 +64,8 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 89, 51));
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 10)); // NOI18N
-        jButton1.setText("INFO+");
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ACER 1\\Downloads\\informacion (1).png")); // NOI18N
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -74,6 +75,7 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jButton6.setText("BEBIDAS");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -83,6 +85,7 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jButton7.setText("ALIMENTOS");
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -90,24 +93,17 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 51));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
-        jLabel2.setText("<html>presione el producto deseado:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 310, 40));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
-        jLabel3.setText("<html>Bienvenido a InventariXpert, aqui podras inventariar tus productos.");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 310, 40));
-
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 330, 330));
 
         jButton5.setFont(new java.awt.Font("Tempus Sans ITC", 2, 8)); // NOI18N
         jButton5.setText("CERRAR");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
         content.setBackground(new java.awt.Color(204, 204, 255));
         content.setBorder(javax.swing.BorderFactory.createTitledBorder("..."));
@@ -157,11 +153,27 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Hola, estas en tu menu de inventario, aqui puedes inventariar tus"
+                + "productos por secciones o catalogos.\n", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        VentanaAlimentos alim = new VentanaAlimentos();
+        alim.setSize(650, 450);
+        alim.setLocation(0, 0);
+
+        content.removeAll();
+        content.add(alim, VentanaMenuPrincipal.CENTER_ALIGNMENT);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Bebidas drink = new Bebidas();
+        VentanaBebidas drink = new VentanaBebidas();
         drink.setSize(650, 450);
         drink.setLocation(0, 0);
-        
+
         content.removeAll();
         content.add(drink, VentanaMenuPrincipal.CENTER_ALIGNMENT);
         content.revalidate();
@@ -169,30 +181,15 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        MediosDeAseo MDA = new MediosDeAseo();
+        VentanaMediosDeAseo MDA = new VentanaMediosDeAseo();
         MDA.setSize(650, 450);
         MDA.setLocation(0, 0);
-        
+
         content.removeAll();
         content.add(MDA, VentanaMenuPrincipal.CENTER_ALIGNMENT);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Alimentos alim = new Alimentos();
-        alim.setSize(650, 450);
-        alim.setLocation(0, 0);
-        
-        content.removeAll();
-        content.add(alim, VentanaMenuPrincipal.CENTER_ALIGNMENT);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "");
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,13 +229,11 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
