@@ -3,14 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proaula;
+package proyectoaula;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -100,6 +108,11 @@ public class VentanaMediosDeAseo extends javax.swing.JPanel {
         });
 
         jButton3.setText("ACTUALIZAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         respuesta.setBackground(new java.awt.Color(51, 255, 0));
         respuesta.setForeground(new java.awt.Color(51, 255, 51));
@@ -112,7 +125,7 @@ public class VentanaMediosDeAseo extends javax.swing.JPanel {
         });
 
         jButton1.setFont(new java.awt.Font("Monotype Corsiva", 0, 12)); // NOI18N
-        jButton1.setText("i");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/informacion (1).png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -136,8 +149,18 @@ public class VentanaMediosDeAseo extends javax.swing.JPanel {
         txt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder("PRECIO:"));
 
         jButton8.setText("AÑADIR");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("QUITAR");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -204,10 +227,12 @@ public class VentanaMediosDeAseo extends javax.swing.JPanel {
                     .addComponent(jButton7)
                     .addComponent(jButton8)
                     .addComponent(jButton9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(9, 9, 9)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -348,7 +373,58 @@ public class VentanaMediosDeAseo extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+                Document documento = new Document();
+        
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte Inventario De Bebidas.pdf"));
+            documento.open();
+            
+            PdfPTable tabla = new PdfPTable(5);
+            tabla.addCell("ID");
+            tabla.addCell("PRODUCTO");
+            tabla.addCell("CANTIDAD");
+            tabla.addCell("PRECIO POR UNIDAD");
+            tabla.addCell("PRECIO TOTAL");
+            
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                PreparedStatement pst = cn.prepareStatement("select * from medios_aseo");
+                
+                ResultSet rs = pst.executeQuery();
+                
+                if (rs.next()) {
+                    
+                    do {                        
+                        tabla.addCell(rs.getString(1));
+                        tabla.addCell(rs.getString(2));
+                        tabla.addCell(rs.getString(3));
+                        tabla.addCell(rs.getString(4));
+                        tabla.addCell(rs.getString(5));
+                    
+                    } while (rs.next());
+                        documento.add(tabla);
+                                
+                }
+                
+            } catch (DocumentException | SQLException e) {
+                
+            }
+            documento.close();
+            
+            respuesta.setText("REPORTE GENERADO");
+
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+            
+        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
+        
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -363,6 +439,188 @@ public class VentanaMediosDeAseo extends javax.swing.JPanel {
     private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_cantidadActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tablaMediosAseo.getModel();
+        model.setRowCount(0);
+
+        
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from bebidas");
+
+            while (rs.next()) {
+
+                String ID = rs.getString("ID");
+                String articulo = rs.getString("PRODUCTO");
+                String cantidad = rs.getString("CANTIDAD");
+                String precio = rs.getString("PRECIOxUNIDAD");
+                String precioTotal = rs.getString("PRECIOTOTAL");
+
+                model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+            respuesta.setText("TABLA ACTUALIZADA");
+
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        respuesta.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+            
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+                try {
+            int cantidadAAgregar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad a añadir:"));
+
+            if (cantidadAAgregar > 0) {
+                String idProducto = txt_ID.getText().trim();
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+
+                PreparedStatement pstCantidadActual = cn.prepareStatement("select CANTIDAD, PRECIOxUNIDAD from medios_aseo where ID = ?");
+                pstCantidadActual.setString(1, idProducto);
+                ResultSet rsCantidadActual = pstCantidadActual.executeQuery();
+
+                if (rsCantidadActual.next()) {
+                    int cantidadActual = rsCantidadActual.getInt("CANTIDAD");
+                    double precioPorUnidad = rsCantidadActual.getDouble("PRECIOxUNIDAD");
+
+                    int nuevaCantidad = cantidadActual + cantidadAAgregar;
+                    double nuevoPrecioTotal = nuevaCantidad * precioPorUnidad;
+
+                    PreparedStatement pstActualizarCantidad = cn.prepareStatement("update bebidas set CANTIDAD = ?, PRECIOTOTAL = ? where ID = ?");
+                    pstActualizarCantidad.setInt(1, nuevaCantidad);
+                    pstActualizarCantidad.setDouble(2, nuevoPrecioTotal);
+                    pstActualizarCantidad.setString(3, idProducto);
+                    pstActualizarCantidad.executeUpdate();
+
+                    respuesta.setText("CANTIDAD AÑADIDA EXITOSAMENTE");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Producto no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                rsCantidadActual.close();
+                pstCantidadActual.close();
+                cn.close();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cantidad válida", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            DefaultTableModel model = (DefaultTableModel) tablaMediosAseo.getModel();
+            model.setRowCount(0);
+
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from bebidas");
+
+                while (rs.next()) {
+                    String ID = rs.getString("ID");
+                    String articulo = rs.getString("PRODUCTO");
+                    String cantidad = rs.getString("CANTIDAD");
+                    String precio = rs.getString("PRECIOxUNIDAD");
+                    String precioTotal = rs.getString("PRECIOTOTAL");
+
+                    model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Error al actualizar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException | SQLException e) {
+
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+            int cantidadAAgregar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad a añadir:"));
+
+            if (cantidadAAgregar > 0) {
+                String idProducto = txt_ID.getText().trim();
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+
+                PreparedStatement pstCantidadActual = cn.prepareStatement("select CANTIDAD, PRECIOxUNIDAD from medios_aseo where ID = ?");
+                pstCantidadActual.setString(1, idProducto);
+                ResultSet rsCantidadActual = pstCantidadActual.executeQuery();
+
+                if (rsCantidadActual.next()) {
+                    int cantidadActual = rsCantidadActual.getInt("CANTIDAD");
+                    double precioPorUnidad = rsCantidadActual.getDouble("PRECIOxUNIDAD");
+
+                    int nuevaCantidad = cantidadActual + cantidadAAgregar;
+                    double nuevoPrecioTotal = nuevaCantidad * precioPorUnidad;
+
+                    PreparedStatement pstActualizarCantidad = cn.prepareStatement("update bebidas set CANTIDAD = ?, PRECIOTOTAL = ? where ID = ?");
+                    pstActualizarCantidad.setInt(1, nuevaCantidad);
+                    pstActualizarCantidad.setDouble(2, nuevoPrecioTotal);
+                    pstActualizarCantidad.setString(3, idProducto);
+                    pstActualizarCantidad.executeUpdate();
+
+                    respuesta.setText("CANTIDAD AÑADIDA EXITOSAMENTE");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Producto no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                rsCantidadActual.close();
+                pstCantidadActual.close();
+                cn.close();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cantidad válida", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            DefaultTableModel model = (DefaultTableModel) tablaMediosAseo.getModel();
+            model.setRowCount(0);
+
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "");
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from bebidas");
+
+                while (rs.next()) {
+                    String ID = rs.getString("ID");
+                    String articulo = rs.getString("PRODUCTO");
+                    String cantidad = rs.getString("CANTIDAD");
+                    String precio = rs.getString("PRECIOxUNIDAD");
+                    String precioTotal = rs.getString("PRECIOTOTAL");
+
+                    model.addRow(new Object[]{ID, articulo, cantidad, precio, precioTotal});
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Error al actualizar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException | SQLException e) {
+
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
