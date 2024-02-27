@@ -361,7 +361,7 @@ public class Alimentos extends javax.swing.JPanel {
 
         try {
             String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte Inventario De Alimentos.pdf"));
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/OneDrive/Escritorio/Reporte Inventario De Alimentos.pdf"));
             documento.open();
 
             PdfPTable tabla = new PdfPTable(5);
